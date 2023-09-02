@@ -1,11 +1,17 @@
+<p>
+    Form Status: {{ profileForm.status }}
+</p>
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <br />
+  
     <label for="first-name">First Name:</label>
-    <input id="first-name" type="test" formControlName="firstName">
-    <br />
+    <input id="first-name" type="text" formControlName="firstName">
+   
     <label for="last-name">Last Name:</label>
     <input id="last-name" type="text" formControlName="lastName">
-
+    
+    <label for="email">Email:</label>
+    <input id="email" type="text" formControlName="email">
+ 
     <label>Birthday</label>
     <input type="date" formControlName="birthDate">
 
@@ -21,9 +27,9 @@
     </div>
 
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-    <button type="button" (click)="updateProfile()">Update Profile</button>
+    <!-- <button type="button" (click)="updateProfile()">Update Profile</button> -->
 
     <br />
 </form>
 
-<button (click)="changeCity()">Change City</button>
+<!-- <button (click)="changeCity()">Change City</button> -->
