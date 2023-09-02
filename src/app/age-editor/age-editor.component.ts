@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-age-editor',
@@ -10,16 +10,28 @@ export class AgeEditorComponent {
     age = new FormControl(50)
 
     profileForm = this.fb.group({
-        firstName: ['', Validators.required],
-        email: ['', [Validators.email, Validators.required]],
+        firstName: [''],
+        email: ['', [Validators.email]],
         lastName: [''],
         birthDate: [''],
         address: this.fb.group({
             street: [''],
             city: [''],
             country: ['']
-        })
+        }),
+        aliases: this.fb.array([
+            this.fb.control('')
+        ])
     })
+
+    get aliases() : FormArray {
+        return this.profileForm.controls.aliases
+        // return this.profileForm.get('aliases') as FormArray
+    }
+
+    addAlias() {
+        this.aliases.push(new FormControl(''))
+    }
 
     // profileForm = new FormGroup({
     //     firstName: new FormControl(''),
