@@ -1,1 +1,29 @@
-<p>age-editor works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <br />
+    <label for="first-name">First Name:</label>
+    <input id="first-name" type="test" formControlName="firstName">
+    <br />
+    <label for="last-name">Last Name:</label>
+    <input id="last-name" type="text" formControlName="lastName">
+
+    <label>Birthday</label>
+    <input type="date" formControlName="birthDate">
+
+    <div formGroupName="address">
+        <label>Address</label>
+        <input formControlName="street">
+
+        <label>City</label>
+        <input formControlName="city">
+
+        <label>Country</label>
+        <input formControlName="country">
+    </div>
+
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    <button type="button" (click)="updateProfile()">Update Profile</button>
+
+    <br />
+</form>
+
+<button (click)="changeCity()">Change City</button>

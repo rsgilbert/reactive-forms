@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-export type EditorType = 'name' | 'profile';
+export type EditorType = 'name' | 'profile' | 'age';
 
 @Component({
   selector: 'app-root',
