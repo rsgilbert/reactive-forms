@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-age-editor',
@@ -9,17 +9,30 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class AgeEditorComponent {
     age = new FormControl(50)
 
-    profileForm = new FormGroup({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        age: new FormControl(0),
-        birthDate: new FormControl(new Date().toISOString().split('T')[0]),
-        address: new FormGroup({
-            street: new FormControl(''),
-            city: new FormControl(''),
-            country: new FormControl('')
+    profileForm = this.fb.group({
+        firstName: [''],
+        lastName: [''],
+        birthDate: [''],
+        address: this.fb.group({
+            street: [''],
+            city: [''],
+            country: ['']
         })
     })
+
+    // profileForm = new FormGroup({
+    //     firstName: new FormControl(''),
+    //     lastName: new FormControl(''),
+    //     age: new FormControl(0),
+    //     birthDate: new FormControl(new Date().toISOString().split('T')[0]),
+    //     address: new FormGroup({
+    //         street: new FormControl(''),
+    //         city: new FormControl(''),
+    //         country: new FormControl('')
+    //     })
+    // })
+
+    constructor(private fb: FormBuilder) {}
 
     incrementAge() {
         this.age.setValue(this.age.value ? Number(this.age.value) + 1 : 1)
